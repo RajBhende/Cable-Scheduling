@@ -3,18 +3,13 @@ import { FaTowerBroadcast } from "react-icons/fa6";
 import "./Dashboard.css";
 
 const projects = [
-  // {
-  //   name: "220KV Getco PSS to BAP 220KV PSS",
-  //   type: "220KV Line",
-  //   code: "GETCO",
-  //   customer: "Test3",
-  // },
-  // {
-  //   name: "220KV Single Circuit EHV Line KA Aland",
-  //   type: "220KV SC on DC Line",
-  //   code: "EHV - Aland",
-  //   customer: "Bluepine Energy",
-  // },
+  {
+    name: "220KV Getco PSS to BAP 220KV PSS",
+    type: "220KV Line",
+    code: "GETCO",
+    customer: "Test3",
+  },
+ 
 ];
 
 const Dashboard = () => {
