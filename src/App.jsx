@@ -20,6 +20,8 @@ import DCSideCableSchedule from "./pages/Projects/ProjectModules/CableSchedule/D
 import AddProject from './pages/Projects/AddProject';
 import ManpowerManagementName from './pages/Projects/ProjectModules/ManpowerManagement/ManpowerManagement_name';
 import Addnewcontractor from './pages/Projects/ProjectModules/ManpowerManagement/Addnewcontractor';
+import Smallview from './pages/Projects/ViewDropdown/Smallview';
+import Listview from './pages/Projects/ViewDropdown/Listview';
 
 const App = () => {
   return (
@@ -44,6 +46,8 @@ const App = () => {
             <Route path="/dcsidecableschedule" element={<DCSideCableSchedule />} />
             <Route path="/addproject" element={<AddProject />} />
             <Route path="/addnewcontractor" element={<Addnewcontractor />} />
+            <Route path="/smallview" element={<Smallview />} />
+            <Route path="/listview" element={<Listview/>} />
 
           </Routes>
         </div>
