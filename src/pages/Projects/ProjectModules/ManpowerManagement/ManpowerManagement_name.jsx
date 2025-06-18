@@ -4,8 +4,8 @@ import { IoArrowBack } from "react-icons/io5";
 
 
 // ✅ Import components
-import Manpower from "./manpower";
-import Contractor from "./contractor";
+import Manpower from "./Manpower";
+import Contractor from "./Contractor";
 
 const ManpowerManagementName = () => {
   const navigate = useNavigate();

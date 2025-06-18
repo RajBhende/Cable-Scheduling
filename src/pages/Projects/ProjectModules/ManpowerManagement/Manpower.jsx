@@ -17,10 +17,10 @@ const Manpower = () => {
     <div className="p-6">
       <div className="flex items-center justify-between mb-4">
         <h5 className="text-xl font-bold">Manpower List</h5>
-        <Button variant="primary" onClick={() => navigate("/Addnewmanpower/manpower")
-}>
-          Add New Manpower
-        </Button>
+       <Button variant="primary" onClick={() => navigate("/Addnewmanpower")}>
+  Add New Manpower
+</Button>
+
       </div>
 
       {manpowerList.length === 0 ? (

@@ -18,8 +18,7 @@ const Contractor = () => {
     <div className="p-6">
       <div className="flex items-center justify-between mb-4">
         <h5 className="text-xl font-bold">Contractor List</h5>
-       <Button variant="primary" onClick={() => navigate("/Addnewmanpower/contractor")}
->
+        <Button variant="primary" onClick={() => navigate("/Addnewcontractor")}>
   Add New Contractor
 </Button>
 
