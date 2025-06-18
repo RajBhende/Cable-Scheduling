@@ -1,13 +1,17 @@
 /* index.css
 This is where you import Tailwind CSS base styles.
 
+
 You can also write your own custom CSS here. */
-/* @tailwind base;
+@import "tailwindcss";
+
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
 /* Reset default spacing */
 html, body {
   margin: 0;
   padding: 0;
 }
+
