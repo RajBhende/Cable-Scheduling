@@ -4,8 +4,14 @@ import { IoMdArrowBack } from "react-icons/io";
 
 const Addnewmanpower = () => {
   const navigate = useNavigate();
-  const { type } = useParams(); // 👈 get the type from URL
-  const isContractor = type === "contractor";
+  const { type } = useParams();
+
+  // Fallback if 'type' is not provided
+  const validTypes = ["manpower", "contractor"];
+  const fallbackType = "manpower";
+  const pageType = validTypes.includes(type) ? type : fallbackType;
+
+  const isContractor = pageType === "contractor";
 
   const [formData, setFormData] = useState({
     projectName: "",
@@ -30,13 +36,13 @@ const Addnewmanpower = () => {
       actions: "Edit | Delete",
     };
 
-    const key = isContractor ? "contractorData" : "manpowerData"; // 👈 unique storage
+    const key = isContractor ? "contractorData" : "manpowerData";
     const existing = JSON.parse(localStorage.getItem(key)) || [];
     existing.push(updatedData);
     localStorage.setItem(key, JSON.stringify(existing));
 
     setTimeout(() => {
-      navigate(`/${type}`); // 👈 Redirect based on type
+navigate("/manpowermanagement_name");
     }, 100);
   };
 
@@ -66,7 +72,6 @@ const Addnewmanpower = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Project Name */}
           <div>
             <label htmlFor="projectName" className="block text-sm font-medium text-gray-700 mb-1">
               Project Name
@@ -83,7 +88,6 @@ const Addnewmanpower = () => {
             />
           </div>
 
-          {/* Name */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
               Name
@@ -100,7 +104,6 @@ const Addnewmanpower = () => {
             />
           </div>
 
-          {/* Position */}
           <div>
             <label htmlFor="position" className="block text-sm font-medium text-gray-700 mb-1">
               Position
@@ -120,7 +123,6 @@ const Addnewmanpower = () => {
             </select>
           </div>
 
-          {/* Designation */}
           <div>
             <label htmlFor="designation" className="block text-sm font-medium text-gray-700 mb-1">
               Designation
@@ -141,7 +143,6 @@ const Addnewmanpower = () => {
           </div>
         </div>
 
-        {/* Buttons */}
         <div className="mt-8 flex justify-end space-x-4">
           <button
             type="button"
@@ -156,7 +157,7 @@ const Addnewmanpower = () => {
           >
             Add {isContractor ? "Contractor" : "Manpower"}
           </button>
-        </div>  
+        </div>
       </form>
     </div>
   );

@@ -18,6 +18,8 @@ import Addmaterial from "./pages/Projects/ProjectModules/MaterialList/Addmateria
 import ACDBCableSchedule from "./pages/Projects/ProjectModules/CableSchedule/ACDBCableSchedule";
 import DCSideCableSchedule from "./pages/Projects/ProjectModules/CableSchedule/DCSideCableSchedule";
 import AddProject from './pages/Projects/AddProject';
+import ManpowerManagementName from './pages/Projects/ProjectModules/ManpowerManagement/ManpowerManagement_name';
+import Addnewcontractor from './pages/Projects/ProjectModules/ManpowerManagement/Addnewcontractor';
 
 const App = () => {
   return (
@@ -31,9 +33,9 @@ const App = () => {
             <Route path="/settings" element={<Settings />} />
             <Route path="/users" element={<Users />} />
             <Route path="/projects/:id" element={<ProjectDashboard />} />
-            <Route path="/manpowermanagement_name" element={<ManpowerManagement />} />
+            <Route path="/manpowermanagement_name" element={<ManpowerManagementName />} />
 <Route path="/addnewmanpower/:type" element={<AddNewManpower />} />
-            <Route path="/manpower" element={<Manpower />} />
+              <Route path="/manpower" element={<Manpower />} />
             <Route path="/contractor" element={<Contractor />} />
             <Route path="/cableschedule" element={<CableSchedule />} />
             <Route path="/projects/:id/materialmanagment" element={<MaterialList />} />
@@ -41,6 +43,8 @@ const App = () => {
             <Route path="/acdbcableschedule" element={<ACDBCableSchedule />} />
             <Route path="/dcsidecableschedule" element={<DCSideCableSchedule />} />
             <Route path="/addproject" element={<AddProject />} />
+            <Route path="/addnewcontractor" element={<Addnewcontractor />} />
+
           </Routes>
         </div>
       </div>
