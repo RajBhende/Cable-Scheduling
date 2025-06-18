@@ -2,9 +2,11 @@
 This is where you import Tailwind CSS base styles.
 
 You can also write your own custom CSS here. */
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
+@import "tailwindcss";
+
 
 /* Reset default spacing */
 html, body {

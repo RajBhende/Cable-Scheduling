@@ -53,7 +53,7 @@ const ProjectDashboard = () => {
 
     <h2 className="text-lg font-semibold mb-2">Manpower Management</h2>
     <Link
-      to={`/projects/${id}/manpower`}
+      to= "/ManpowerManagement_name"
       className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
     >
       View Manpower Management
