@@ -7,30 +7,32 @@ function CableSchedule() {
   const navigate = useNavigate();
 
   const handleTabChange = (tab) => setActiveTab(tab);
-  
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
+      {/* Back Button */}
       <div className="mb-4">
         <button
-          className="text-blue-600 hover:text-blue-800 transition font-semibold"
+          className="text-blue-600 hover:underline text-sm font-medium flex items-center"
           onClick={() => navigate(-1)}
         >
-          &larr; Cable Schedule {id}
+          &larr; Back to Project Dashboard
         </button>
       </div>
 
-      <h2 className="text-3xl font-bold mb-4 text-gray-800">
-        Two-core Multipurpose Power Cable
+      {/* Title */}
+      <h2 className="text-2xl font-bold text-gray-800 mb-2">
+        Two-core Multipurpose Power Cable  {id}
       </h2>
+      <br></br>
 
       {/* Tabs */}
-      <div className="flex flex-wrap space-x-2 mb-6">
+      <div className="flex space-x-2 mb-6">
         <button
-          className={`px-4 py-2 rounded-md text-sm font-medium transition ${
+          className={`px-4 py-2 rounded-md text-sm font-medium ${
             activeTab === "AC SIDE"
               ? "bg-blue-600 text-white"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              : "bg-gray-200 text-gray-700"
           }`}
           onClick={() => handleTabChange("AC SIDE")}
         >
@@ -39,10 +41,10 @@ function CableSchedule() {
 
         <Link to="/ACDBCableSchedule">
           <button
-            className={`px-4 py-2 rounded-md text-sm font-medium transition ${
+            className={`px-4 py-2 rounded-md text-sm font-medium ${
               activeTab === "ACDB"
                 ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                : "bg-gray-200 text-gray-700"
             }`}
             onClick={() => handleTabChange("ACDB")}
           >
@@ -52,10 +54,10 @@ function CableSchedule() {
 
         <Link to="/DCSideCableSchedule">
           <button
-            className={`px-4 py-2 rounded-md text-sm font-medium transition ${
+            className={`px-4 py-2 rounded-md text-sm font-medium ${
               activeTab === "DC SIDE"
                 ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                : "bg-gray-200 text-gray-700"
             }`}
             onClick={() => handleTabChange("DC SIDE")}
           >
@@ -64,60 +66,106 @@ function CableSchedule() {
         </Link>
       </div>
 
-       {/* Top Actions */}
-      <div className="flex justify-end space-x-2 mb-3">
-        <button className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700">
+      {/* Top Actions */}
+      <div className="flex flex-wrap justify-end gap-2 mb-4">
+        <button className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 text-sm">
           Download Template
         </button>
-        <input type="file" className="border px-3 py-2 rounded-md" />
-        <button className="bg-blue-100 text-blue-700 px-4 py-2 rounded border hover:bg-blue-200">
+
+        <input
+          type="file"
+          className="border px-3 py-2 rounded-md text-sm cursor-pointer"
+        />
+
+        <button className="bg-blue-100 text-blue-700 px-4 py-2 rounded border hover:bg-blue-200 text-sm">
           Save Changes
         </button>
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg shadow">
-        <table className="min-w-full border border-gray-300 text-sm text-center bg-white">
-          <thead className="bg-blue-100 sticky top-0 z-10">
-            <tr className="border border-gray-300">
-              <th rowSpan="2" className="py-2 px-4 border">SR.NO.</th>
-              <th rowSpan="2" className="py-2 px-4 border">CABLE NO.</th>
-              <th rowSpan="2" className="py-2 px-4 border">FEEDER DESCRIPTION</th>
-              <th colSpan="4" className="py-2 px-4 border">FROM</th>
-              <th colSpan="4" className="py-2 px-4 border">TO</th>
-              <th colSpan="5" className="py-2 px-4 border">CABLE</th>
-              <th rowSpan="2" className="py-2 px-4 border">DRAWING NO.</th>
-              <th rowSpan="2" className="py-2 px-4 border">PURPOSE</th>
+      <div className="overflow-x-auto p-4  rounded">
+        <table className="min-w-[1500px] border text-xs text-center">
+          <thead className="bg-gray-200">
+            <tr>
+              <th rowSpan="2" className="border px-2 py-1">SL. NO</th>
+              <th rowSpan="2" className="border px-2 py-1">CABLE NO.</th>
+              <th colSpan="2" className="border px-2 py-1">EQUIPMENT DESIGNATION</th>
+              <th rowSpan="2" className="border px-2 py-1">SIZE</th>
+              <th rowSpan="2" className="border px-2 py-1">NO. OF RUNS</th>
+              <th colSpan="4" className="border px-2 py-1">Estimated length</th>
+              <th rowSpan="2" className="border px-2 py-1">ESTIMATED LENGTH</th>
+              <th colSpan="3" className="border px-2 py-1">INTERCONNECTION</th>
+              <th colSpan="2" className="border px-2 py-1">Wire Nos.</th>
+              <th colSpan="2" className="border px-2 py-1">Ferrule Nos.</th>
+              <th rowSpan="2" className="border px-2 py-1">APPLICATION</th>
+              <th rowSpan="2" className="border px-2 py-1">REMARK</th>
+              <th colSpan="2" className="border px-2 py-1">REF. DRAWING. NO :</th>
             </tr>
-            <tr className="border border-gray-300">
-              <th className="py-2 px-2 border">EQUIPMENT</th>
-              <th className="py-2 px-2 border">TERMINAL BLOCK</th>
-              <th className="py-2 px-2 border">TERMINAL NO.</th>
-              <th className="py-2 px-2 border">WIRE NO.</th>
-              <th className="py-2 px-2 border">EQUIPMENT</th>
-              <th className="py-2 px-2 border">TERMINAL BLOCK</th>
-              <th className="py-2 px-2 border">TERMINAL NO.</th>
-              <th className="py-2 px-2 border">WIRE NO.</th>
-              <th className="py-2 px-2 border">CORE</th>
-              <th className="py-2 px-2 border">NO. OF RUNS</th>
-              <th className="py-2 px-2 border">Sq.mm</th>
-              <th className="py-2 px-2 border">CONDUCTOR</th>
-              <th className="py-2 px-2 border">INSULATION</th>
+            <tr>
+              <th className="border px-2 py-1">FROM</th>
+              <th className="border px-2 py-1">TO</th>
+              <th className="border px-2 py-1">HL</th>
+              <th className="border px-2 py-1">VL</th>
+              <th className="border px-2 py-1">LL</th>
+              <th className="border px-2 py-1">D</th>
+              <th className="border px-2 py-1">CORE</th>
+              <th className="border px-2 py-1">FROM</th>
+              <th className="border px-2 py-1">TO</th>
+              <th className="border px-2 py-1">FROM</th>
+              <th className="border px-2 py-1">TO</th>
+              <th className="border px-2 py-1">FROM</th>
+              <th className="border px-2 py-1">TO</th>
+              <th className="border px-2 py-1">SHEET NO.</th>
             </tr>
           </thead>
           <tbody>
-            {/* Example row - you can map through data later */}
-            {/* <tr className="bg-gray-50 hover:bg-gray-100 border-t">
-              <td className="py-2 px-4 border">1</td>
-              <td className="py-2 px-4 border">PAC-6601</td>
-              <td className="py-2 px-4 border">Substation</td>
-              ...
-            </tr> */}
-            <tr>
-              <td colSpan="18" className="text-left py-2 px-4 bg-gray-100 font-semibold border">
-                {/* 66kV TRAFO BAY (601) */}
+            <tr className="bg-gray-100 font-semibold">
+              <td colSpan="22" className="border px-2 py-1 text-left">
+                {/* BUS A VT INTERPOLE CABLING */}
               </td>
             </tr>
+
+            {/* <tr>
+              <td className="border px-2 py-1">1</td>
+              <td className="border px-2 py-1">2</td>
+              <td className="border px-2 py-1">4</td>
+              <td className="border px-2 py-1">1001</td>
+              <td className="border px-2 py-1">4Cx4</td>
+              <td className="border px-2 py-1">1</td>
+              <td className="border px-2 py-1">4</td>
+              <td className="border px-2 py-1">5</td>
+              <td className="border px-2 py-1">1</td>
+              <td className="border px-2 py-1">10</td>
+              <td className="border px-2 py-1">1a</td>
+              <td className="border px-2 py-1">RTB-1</td>
+              <td className="border px-2 py-1">R</td>
+              <td className="border px-2 py-1">R</td>
+              <td className="border px-2 py-1">204-VT MB-RTB-1 / 1a</td>
+              <td className="border px-2 py-1">204-VT R-1a / RTB-1</td>
+              <td className="border px-2 py-1">Core -1</td>
+              <td className="border px-2 py-1">CVT - CVT JB</td>
+              <td className="border px-2 py-1">FROM: 1HYT902474</td>
+              <td className="border px-2 py-1 text-red-600">TO : Nill</td>
+            </tr> */}
+
+            {/* <tr>
+              <td colSpan="10" className="border px-2 py-1"></td>
+              <td className="border px-2 py-1">1n</td>
+              <td className="border px-2 py-1">RTB-2</td>
+              <td className="border px-2 py-1">R</td>
+              <td className="border px-2 py-1">R</td>
+              <td className="border px-2 py-1">204-VT MB-RTB-2 / 1n</td>
+              <td className="border px-2 py-1">204-VT R-1n / RTB-2</td>x
+              <td colSpan="6" className="border px-2 py-1"></td>
+            </tr> */}
+
+            {/* <tr>
+              <td colSpan="10" className="border px-2 py-1"></td>
+              <td className="border px-2 py-1">3</td>
+              <td colSpan="11" className="border px-2 py-1 text-red-600 font-semibold text-left">
+                SPARE
+              </td>
+            </tr> */}
           </tbody>
         </table>
       </div>

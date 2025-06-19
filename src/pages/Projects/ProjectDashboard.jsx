@@ -6,20 +6,17 @@ const dummyProjects = [
   {
     id: 1,
     name: "Two-core Multipurpose Cable Line",
-    customer: "NPPMT",
-    type: "400kV",
-    towers: 500,
-    from: "Neemuch",
-    to: "Pachora",
-    code: "C-001",
-    contractor: "ABC Infratec Pvt. Ltd.",
-    epc: "CB-AP12",
-    startDate: "01-May-2025",
-    endDate: "01-June-2026",
-    status: "In-progress",
-    cableType: "XLPE",
-    lengthOfCable: "25 km",
-    consultancy: "XYZ Engineering",
+    customer: "",
+    from: "",
+    to: "",
+    code: "",
+    contractor: "",
+    startDate: "",
+    endDate: "",
+    status: "",
+    cableType: "",
+    lengthOfCable: "",
+    consultancy: "",
   },
 ];
 
@@ -37,8 +34,8 @@ const ProjectDashboard = () => {
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-bold text-gray-800">Project Dashboard</h3>
         <div className="text-right">
-          <small className="text-gray-500 block">Welcome,</small>
-          <span className="font-medium">abc@gmail.com</span>
+          {/* <small className="text-gray-500 block">abc@gmail.com</small> */}
+          <span className="font-medium">Welcome,abc@gmail.com</span>
         </div>
       </div>
 
@@ -62,14 +59,16 @@ const ProjectDashboard = () => {
             <p><strong>Contractor Name:</strong> {project.contractor}</p>
             <p><strong>Consultancy Name:</strong> {project.consultancy}</p>
             <p><strong>Project Start Date:</strong> {project.startDate}</p>
-            <p><strong>Project Status:</strong> {project.status}</p>
+             <p><strong>Project Status:</strong> {project.status}</p>
+
           </div>
           <div>
             <p><strong>Cable Type:</strong> {project.cableType}</p>
             <p><strong>Length of Cable:</strong> {project.lengthOfCable}</p>
-            <p><strong>From Location:</strong> {project.from}</p>
-            <p><strong>To Location:</strong> {project.to}</p>
-            <p><strong>Project End Date:</strong> {project.endDate}</p>
+             <p><strong>From Location City:</strong> {project.fromcity}</p>
+            <p><strong>To Location City:</strong> {project.tocity}</p>
+            <p><strong>From Location District:</strong> {project.fromdistrict}</p>
+            <p><strong>To Location District:</strong> {project.todistrict}</p>
           </div>
         </div>
       </div>
@@ -102,7 +101,7 @@ const ProjectDashboard = () => {
 
       {/* Back Link */}
       <div className="mt-6">
-        <Link to="/projects" className="text-blue-600 hover:underline">← Back to Projects</Link>
+        {/* <Link to="/projects" className="text-blue-600 hover:underline">← Back to Projects</Link> */}
       </div>
     </div>
   );
