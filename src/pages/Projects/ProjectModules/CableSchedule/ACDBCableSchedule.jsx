@@ -22,7 +22,7 @@ const ACDBCableSchedule = () => {
 
       {/* Header */}
       <h2 className="text-2xl font-bold text-gray-800 mb-2">
-        Two-core Multipurpose Power Cable - Cable Schedule {id}
+        Two-core Multipurpose Power Cable  {id}
       </h2>
 
       {/* Tabs */}
