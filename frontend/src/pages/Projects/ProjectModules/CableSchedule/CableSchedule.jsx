@@ -1,123 +1,199 @@
+
 import React, { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
+import { HiArrowLeft } from "react-icons/hi";
 
 function CableSchedule() {
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState("AC SIDE");
   const navigate = useNavigate();
-
   const handleTabChange = (tab) => setActiveTab(tab);
-  
+
+  // Inside your CableSchedule component:
+const handleDownload = () => {
+ const tableData = [
+  [
+    "SL. NO", "CABLE NO.",
+    "EQUIPMENT DESIGNATION", "", 
+    "SIZE", "NO. OF RUNS",
+    "Estimated length", "", "", 
+    "ESTIMATED LENGTH",
+    "INTERCONNECTION", "", "", 
+    "Wire Nos.", "", 
+    "Ferrule Nos.", "", 
+    "APPLICATION", "REMARK",
+    "REF. DRAWING. NO", ""
+  ],
+  [
+    "", "", 
+    "FROM", "TO",
+    "", "", 
+    "HL", "VL", "LL",
+    "",
+    "CORE", "FROM", "TO",
+    "FROM", "TO",
+    "FROM", "TO",
+    "", "",
+    "SHEET NO", 
+  ],
+ 
+];
+
+
+  const worksheet = XLSX.utils.aoa_to_sheet(tableData);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Cable Schedule");
+
+  const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+  const dataBlob = new Blob([excelBuffer], { type: "application/octet-stream" });
+  saveAs(dataBlob, `CableSchedule_${id || "template"}.xlsx`);
+};
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
-      <div className="mb-4">
-        <button
-          className="text-blue-600 hover:text-blue-800 transition font-semibold"
-          onClick={() => navigate(-1)}
-        >
-          &larr; Cable Schedule {id}
-        </button>
-      </div>
+      {/* Back Button */}
+      <div className="mb-4 flex items-center space-x-2">
+       <button
+         onClick={() => navigate(-1)}
+         className="text-blue-700 text-lg hover:underline"
+       >
+             <HiArrowLeft className="w-9 h-5" />
+       </button>
+       
+       <span className="text-lg font-semibold text-gray-800">
+         <h3>Cable Schedule</h3>
+       </span>
+     </div>
 
-      <h2 className="text-3xl font-bold mb-4 text-gray-800">
-        Two-core Multipurpose Power Cable
-      </h2>
+
+      {/* Page Title */}
+      <h3 className="text-2xl font-bold text-gray-800 mb-2">
+        Two-core Multipurpose Power Cable <span className="text-blue-600 font-semibold">{id}</span>
+      </h3>
 
       {/* Tabs */}
-      <div className="flex flex-wrap space-x-2 mb-6">
-        <button
-          className={`px-4 py-2 rounded-md text-sm font-medium transition ${
-            activeTab === "AC SIDE"
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-          }`}
-          onClick={() => handleTabChange("AC SIDE")}
-        >
-          AC SIDE
-        </button>
+      <div className="flex flex-wrap gap-2 my-6">
+        {[ "ACSIDE", "ACDB", "DCSIDE"].map((tab) => {
+          const route =
+            tab === "AC SIDE"
+              ? "#"
+              : tab === "ACDB"
+              ? "/ACDBCableSchedule"
+              : "/DCSideCableSchedule";
 
-        <Link to="/ACDBCableSchedule">
-          <button
-            className={`px-4 py-2 rounded-md text-sm font-medium transition ${
-              activeTab === "ACDB"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
-            onClick={() => handleTabChange("ACDB")}
-          >
-            ACDB
-          </button>
-        </Link>
-
-        <Link to="/DCSideCableSchedule">
-          <button
-            className={`px-4 py-2 rounded-md text-sm font-medium transition ${
-              activeTab === "DC SIDE"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
-            onClick={() => handleTabChange("DC SIDE")}
-          >
-            DC SIDE
-          </button>
-        </Link>
+          return (
+            <Link key={tab} to={route}>
+              <button
+                className={`px-4 py-2 rounded-md text-sm font-medium transition ${
+                  activeTab === tab
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                }`}
+                onClick={() => handleTabChange(tab)}
+              >
+                {tab}
+              </button>
+            </Link>
+          );
+        })}
       </div>
 
-       {/* Top Actions */}
-      <div className="flex justify-end space-x-2 mb-3">
-        <button className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700">
-          Download Template
-        </button>
-        <input type="file" className="border px-3 py-2 rounded-md" />
-        <button className="bg-blue-100 text-blue-700 px-4 py-2 rounded border hover:bg-blue-200">
+      {/* Action Buttons */}
+      <div className="flex flex-wrap justify-end items-center gap-3 mb-4">
+       <button
+  onClick={handleDownload}
+  className="bg-blue-600 text-white px-4 py-2 rounded-md shadow hover:bg-blue-700 text-sm transition"
+>
+  Download Template
+</button>
+
+        <label className="cursor-pointer">
+          <input
+            type="file"
+            className="hidden"
+            onChange={(e) => console.log("File uploaded:", e.target.files[0])}
+          />
+          <div className="border border-gray-300 px-4 py-2 rounded-md text-sm bg-white hover:bg-gray-100 shadow-sm">
+            Upload File
+          </div>
+        </label>
+
+        <button className="bg-blue-100 text-blue-700 px-4 py-2 rounded-md border hover:bg-blue-200 text-sm transition">
           Save Changes
         </button>
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg shadow">
-        <table className="min-w-full border border-gray-300 text-sm text-center bg-white">
-          <thead className="bg-blue-100 sticky top-0 z-10">
-            <tr className="border border-gray-300">
-              <th rowSpan="2" className="py-2 px-4 border">SR.NO.</th>
-              <th rowSpan="2" className="py-2 px-4 border">CABLE NO.</th>
-              <th rowSpan="2" className="py-2 px-4 border">FEEDER DESCRIPTION</th>
-              <th colSpan="4" className="py-2 px-4 border">FROM</th>
-              <th colSpan="4" className="py-2 px-4 border">TO</th>
-              <th colSpan="5" className="py-2 px-4 border">CABLE</th>
-              <th rowSpan="2" className="py-2 px-4 border">DRAWING NO.</th>
-              <th rowSpan="2" className="py-2 px-4 border">PURPOSE</th>
+      <div className="overflow-x-auto rounded-lg shadow bg-white border">
+        <table className="min-w-[2000px] text-xs text-center border-collapse">
+          <thead className="bg-blue-100 text-gray-700 text-[13px]">
+            <tr>
+              <th rowSpan="2" className="border px-2 py-1">SL. NO</th>
+              <th rowSpan="2" className="border px-2 py-1">CABLE NO.</th>
+              <th colSpan="2" className="border px-2 py-1">EQUIPMENT DESIGNATION</th>
+              <th rowSpan="2" className="border px-2 py-1">SIZE</th>
+              <th rowSpan="2" className="border px-2 py-1">NO. OF RUNS</th>
+              <th colSpan="3" className="border px-2 py-1">Estimated length</th>
+              <th rowSpan="2" className="border px-2 py-1">ESTIMATED LENGTH</th>
+              <th colSpan="3" className="border px-2 py-1">INTERCONNECTION</th>
+              <th colSpan="2" className="border px-2 py-1">Wire Nos.</th>
+              <th colSpan="2" className="border px-2 py-1">Ferrule Nos.</th>
+              <th rowSpan="2" className="border px-2 py-1">APPLICATION</th>
+              <th colSpan="2" className="border px-2 py-1">REF. DRAWING. NO</th>
+              <th rowSpan="2" className="border px-2 py-1">STAGE</th>
+              <th rowSpan="2" className="border px-2 py-1">STATUS</th>
+              <th rowSpan="2" className="border px-2 py-1">REMARKS</th>
             </tr>
-            <tr className="border border-gray-300">
-              <th className="py-2 px-2 border">EQUIPMENT</th>
-              <th className="py-2 px-2 border">TERMINAL BLOCK</th>
-              <th className="py-2 px-2 border">TERMINAL NO.</th>
-              <th className="py-2 px-2 border">WIRE NO.</th>
-              <th className="py-2 px-2 border">EQUIPMENT</th>
-              <th className="py-2 px-2 border">TERMINAL BLOCK</th>
-              <th className="py-2 px-2 border">TERMINAL NO.</th>
-              <th className="py-2 px-2 border">WIRE NO.</th>
-              <th className="py-2 px-2 border">CORE</th>
-              <th className="py-2 px-2 border">NO. OF RUNS</th>
-              <th className="py-2 px-2 border">Sq.mm</th>
-              <th className="py-2 px-2 border">CONDUCTOR</th>
-              <th className="py-2 px-2 border">INSULATION</th>
+            <tr>
+              <th className="border px-2 py-1">FROM</th>
+              <th className="border px-2 py-1">TO</th>
+              <th className="border px-2 py-1">HL</th>
+              <th className="border px-2 py-1">VL</th>
+              <th className="border px-2 py-1">LL</th>
+              <th className="border px-2 py-1">CORE</th>
+              <th className="border px-2 py-1">FROM</th>
+              <th className="border px-2 py-1">TO</th>
+              <th className="border px-2 py-1">FROM</th>
+              <th className="border px-2 py-1">TO</th>
+              <th className="border px-2 py-1">FROM</th>
+              <th className="border px-2 py-1">TO</th>
+              <th className="border px-2 py-1">SHEET NO.</th>
             </tr>
           </thead>
           <tbody>
-            {/* Example row - you can map through data later */}
-            {/* <tr className="bg-gray-50 hover:bg-gray-100 border-t">
-              <td className="py-2 px-4 border">1</td>
-              <td className="py-2 px-4 border">PAC-6601</td>
-              <td className="py-2 px-4 border">Substation</td>
-              ...
-            </tr> */}
-            <tr>
-              <td colSpan="18" className="text-left py-2 px-4 bg-gray-100 font-semibold border">
-                {/* 66kV TRAFO BAY (601) */}
+            {/* Section Row */}
+            <tr className="bg-gray-50 font-semibold text-left">
+              <td colSpan="22" className="border px-2 py-2">
+                {/* Example Section Name */}
+                {/* BUS A VT INTERPOLE CABLING */}
               </td>
             </tr>
+
+            {/* Sample Data Row (can be repeated or dynamically generated) */}
+            {/* <tr className="hover:bg-blue-50">
+              <td className="border px-2 py-1">1</td>
+              <td className="border px-2 py-1">2</td>
+              <td className="border px-2 py-1">204-VT R</td>
+              <td className="border px-2 py-1">204-VT MB</td>
+              <td className="border px-2 py-1">4Cx4</td>
+              <td className="border px-2 py-1">1</td>
+              <td className="border px-2 py-1">4</td>
+              <td className="border px-2 py-1">5</td>
+              <td className="border px-2 py-1">1</td>
+              <td className="border px-2 py-1">10</td>
+              <td className="border px-2 py-1">1a</td>
+              <td className="border px-2 py-1">RTB-1</td>
+              <td className="border px-2 py-1">R</td>
+              <td className="border px-2 py-1">R</td>
+              <td className="border px-2 py-1">204-VT MB-RTB-1 / 1a</td>
+              <td className="border px-2 py-1">204-VT R-1a / RTB-1</td>
+              <td className="border px-2 py-1">Core -1</td>
+              <td className="border px-2 py-1">CVT - CVT JB</td>
+              <td className="border px-2 py-1">FROM: 1HYT902474</td>
+              <td className="border px-2 py-1 ">TO: Nill</td>
+            </tr> */}
           </tbody>
         </table>
       </div>

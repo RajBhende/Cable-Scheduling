@@ -1,25 +1,22 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { FiCalendar } from "react-icons/fi";
+import { FiCalendar, FiBarChart2, FiUsers, FiPackage  } from "react-icons/fi";
 
 const dummyProjects = [
   {
     id: 1,
     name: "Two-core Multipurpose Cable Line",
-    customer: "NPPMT",
-    type: "400kV",
-    towers: 500,
-    from: "Neemuch",
-    to: "Pachora",
-    code: "C-001",
-    contractor: "ABC Infratec Pvt. Ltd.",
-    epc: "CB-AP12",
-    startDate: "01-May-2025",
-    endDate: "01-June-2026",
-    status: "In-progress",
-    cableType: "XLPE",
-    lengthOfCable: "25 km",
-    consultancy: "XYZ Engineering",
+    customer: "",
+    from: "",
+    to: "",
+    code: "",
+    contractor: "",
+    startDate: "",
+    endDate: "",
+    status: "",
+    cableType: "",
+    lengthOfCable: "",
+    consultancy: "",
   },
 ];
 
@@ -37,8 +34,8 @@ const ProjectDashboard = () => {
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-bold text-gray-800">Project Dashboard</h3>
         <div className="text-right">
-          <small className="text-gray-500 block">Welcome,</small>
-          <span className="font-medium">abc@gmail.com</span>
+          {/* <small className="text-gray-500 block">abc@gmail.com</small> */}
+          <span className="font-medium">Welcome,abc@gmail.com</span>
         </div>
       </div>
 
@@ -62,47 +59,62 @@ const ProjectDashboard = () => {
             <p><strong>Contractor Name:</strong> {project.contractor}</p>
             <p><strong>Consultancy Name:</strong> {project.consultancy}</p>
             <p><strong>Project Start Date:</strong> {project.startDate}</p>
-            <p><strong>Project Status:</strong> {project.status}</p>
+             <p><strong>Project Status:</strong> {project.status}</p>
+
           </div>
           <div>
             <p><strong>Cable Type:</strong> {project.cableType}</p>
             <p><strong>Length of Cable:</strong> {project.lengthOfCable}</p>
-            <p><strong>From Location:</strong> {project.from}</p>
-            <p><strong>To Location:</strong> {project.to}</p>
-            <p><strong>Project End Date:</strong> {project.endDate}</p>
+             <p><strong>From Location City:</strong> {project.fromcity}</p>
+            <p><strong>To Location City:</strong> {project.tocity}</p>
+            <p><strong>From Location District:</strong> {project.fromdistrict}</p>
+            <p><strong>To Location District:</strong> {project.todistrict}</p>
           </div>
         </div>
       </div>
 
       {/* Navigation Links */}
-      <div className="flex flex-wrap gap-4">
-        <Link
-          to="/cableschedule"
-          className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          <FiCalendar className="text-lg" />
-          <span>Cable Schedule</span>
-        </Link>
+       <div className="flex flex-wrap gap-4 mt-4">
+      {/* Cable Schedule */}
+      <Link
+        to="/cableschedule"
+        className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition"
+      >
+        <FiCalendar className="text-lg" />
+        <span className="text-sm font-medium">Cable Schedule</span>
+      </Link>
 
-        <Link
-                    to="/manpowermanagement_name"
+      {/* Cable Summary */}
+      <Link
+        to="/cablesummary"
+        className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition"
+      >
+        <FiBarChart2 className="text-lg" />
+        <span className="text-sm font-medium">Cable Summary</span>
+      </Link>
 
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Manpower Management
-        </Link>
+      {/* Manpower Management */}
+      <Link
+        to="/manpowermanagement_name"
+        className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition"
+      >
+        <FiUsers className="text-lg" />
+        <span className="text-sm font-medium">Manpower Management</span>
+      </Link>
 
-        <Link
-          to={`/projects/${id}/materialmanagment`}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Material Management
-        </Link>
-      </div>
+      {/* Material Management */}
+      <Link
+        to={`/projects/${id}/materialmanagment`}
+        className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition"
+      >
+        <FiPackage className="text-lg" />
+        <span className="text-sm font-medium">Material Management</span>
+      </Link>
+    </div>
 
       {/* Back Link */}
       <div className="mt-6">
-        <Link to="/projects" className="text-blue-600 hover:underline">← Back to Projects</Link>
+        {/* <Link to="/projects" className="text-blue-600 hover:underline">← Back to Projects</Link> */}
       </div>
     </div>
   );

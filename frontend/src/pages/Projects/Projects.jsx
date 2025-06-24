@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { FiEdit2, FiTrash2 } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
-import { saveAs } from 'file-saver';
+import { FiEdit2, FiTrash2, FiGrid, FiList } from "react-icons/fi";
 import { FaBars } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { saveAs } from "file-saver";
 
 const mockProjects = [
   {
@@ -13,6 +13,7 @@ const mockProjects = [
     totallengthofcable: 120,
     fromlocation: "Neemuch",
     tolocation: "Pachora",
+    towers: 500,
     status: "Active",
   },
   {
@@ -23,6 +24,7 @@ const mockProjects = [
     totallengthofcable: 95,
     fromlocation: "Pachora",
     tolocation: "Rajgarh",
+    towers: 500,
     status: "In Progress",
   },
 ];
@@ -34,6 +36,7 @@ const Projects = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showConfirm, setShowConfirm] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
+  const [view, setView] = useState("table"); // view: table or card
   const navigate = useNavigate();
 
   const projectsPerPage = 5;
@@ -42,17 +45,16 @@ const Projects = () => {
     p.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const sortedProjects = [...filtered].sort((a, b) => {
-    if (!sortField) return 0;
-    return a[sortField].localeCompare(b[sortField]);
-  });
+  const sorted = [...filtered].sort((a, b) =>
+    sortField ? a[sortField].localeCompare(b[sortField]) : 0
+  );
 
-  const current = sortedProjects.slice(
+  const current = sorted.slice(
     (currentPage - 1) * projectsPerPage,
     currentPage * projectsPerPage
   );
 
-  const totalPages = Math.ceil(sortedProjects.length / projectsPerPage);
+  const totalPages = Math.ceil(sorted.length / projectsPerPage);
 
   const confirmDelete = () => {
     setProjects((prev) => prev.filter((p) => p.id !== deleteId));
@@ -72,14 +74,32 @@ const Projects = () => {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      {/* Top Bar */}
+    <div className="p-6 max-w-7xl mx-auto min-h-screen bg-gray-50">
+      {/* Header */}
       <div className="flex justify-between items-center mb-4 flex-wrap gap-4">
-        <div className="flex items-center gap-2 text-gray-700 mb-4">
-          <FaBars className="text-2xl cursor-pointer" />
+        <div className="flex items-center gap-2 text-gray-700">
+          <FaBars className="text-2xl" />
           <h5 className="text-xl font-semibold">Projects</h5>
         </div>
-        <div className="flex gap-2 flex-wrap">
+
+        <div className="flex flex-wrap gap-2">
+          {/* View Toggle */}
+          <div className="flex border rounded bg-white">
+            <button
+              onClick={() => setView("table")}
+              className={`px-3 py-1 flex items-center gap-1 ${view === "table" ? "bg-blue-600 text-white" : ""}`}
+            >
+              <FiList /> Table
+            </button>
+            <button
+              onClick={() => setView("card")}
+              className={`px-3 py-1 flex items-center gap-1 ${view === "card" ? "bg-blue-600 text-white" : ""}`}
+            >
+              <FiGrid /> Card
+            </button>
+          </div>
+
+          {/* Search */}
           <input
             type="text"
             placeholder="🔍 Search projects..."
@@ -90,6 +110,8 @@ const Projects = () => {
             }}
             className="border border-gray-300 rounded px-3 py-1"
           />
+
+          {/* Sort */}
           <select
             onChange={(e) => setSortField(e.target.value)}
             className="border border-gray-300 rounded px-2 py-1"
@@ -99,6 +121,8 @@ const Projects = () => {
             <option value="clientname">Client</option>
             <option value="typeofline">Type</option>
           </select>
+
+          {/* Actions */}
           <button onClick={exportCSV} className="bg-green-600 text-white px-3 py-1 rounded">
             Export CSV
           </button>
@@ -111,72 +135,98 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* Project Table */}
-      <div className="overflow-x-auto bg-white rounded shadow">
-        <table className="w-full text-sm text-left">
-          <thead className="bg-blue-100 text-gray-700">
-            <tr>
-              <th className="px-3 py-2">Project</th>
-              <th className="px-3 py-2 text-center">Client</th>
-              <th className="px-3 py-2 text-center">Type</th>
-              <th className="px-3 py-2 text-center">Length</th>
-              <th className="px-3 py-2 text-center">From</th>
-              <th className="px-3 py-2 text-center">To</th>
-              <th className="px-3 py-2 text-center">Status</th>
-              <th className="px-3 py-2 text-center">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {current.map((p) => (
-              <tr key={p.id} className="hover:bg-gray-50">
-                <td className="px-3 py-2 text-blue-600">
-                  <Link to={`/projects/${p.id}`}>{p.name}</Link>
-                </td>
-                <td className="px-3 py-2 text-center">{p.clientname}</td>
-                <td className="px-3 py-2 text-center">{p.typeofline}</td>
-                <td className="px-3 py-2 text-center">{p.totallengthofcable} km</td>
-                <td className="px-3 py-2 text-center">{p.fromlocation}</td>
-                <td className="px-3 py-2 text-center">{p.tolocation}</td>
-                <td className="px-3 py-2 text-center">
-                  <span
-                    className={`px-2 py-1 rounded text-xs font-semibold ${
-                      p.status === "Active"
-                        ? "bg-green-100 text-green-700"
-                        : p.status === "In Progress"
-                        ? "bg-yellow-100 text-yellow-700"
-                        : "bg-gray-100 text-gray-700"
-                    }`}
-                  >
-                    {p.status}
-                  </span>
-                </td>
-                <td className="px-3 py-2 text-center">
-                  <div className="flex justify-center gap-3">
-                    <FiEdit2
-                      className="cursor-pointer text-blue-600"
-                      onClick={() => navigate(`/editproject/${p.id}`)}
-                    />
-                    <FiTrash2
-                      className="cursor-pointer text-red-500"
-                      onClick={() => {
-                        setDeleteId(p.id);
-                        setShowConfirm(true);
-                      }}
-                    />
-                  </div>
-                </td>
-              </tr>
-            ))}
-            {current.length === 0 && (
+      {/* Content View */}
+      {view === "table" ? (
+        // Table View
+        <div className="overflow-x-auto bg-white rounded shadow">
+          <table className="w-full text-sm text-left">
+            <thead className="bg-blue-100 text-gray-700">
               <tr>
-                <td colSpan="8" className="text-center text-gray-500 py-4">
-                  No projects found.
-                </td>
+                <th className="px-3 py-2">Project</th>
+                <th className="px-3 py-2 text-center">Client</th>
+                <th className="px-3 py-2 text-center">Type</th>
+                <th className="px-3 py-2 text-center">Length</th>
+                <th className="px-3 py-2 text-center">From</th>
+                <th className="px-3 py-2 text-center">To</th>
+                <th className="px-3 py-2 text-center">Status</th>
+                <th className="px-3 py-2 text-center">Actions</th>
               </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {current.map((p) => (
+                <tr key={p.id} className="hover:bg-gray-50">
+                  <td className="px-3 py-2 text-blue-600">
+                    <Link to={`/projects/${p.id}`}>{p.name}</Link>
+                  </td>
+                  <td className="px-3 py-2 text-center">{p.clientname}</td>
+                  <td className="px-3 py-2 text-center">{p.typeofline}</td>
+                  <td className="px-3 py-2 text-center">{p.totallengthofcable} km</td>
+                  <td className="px-3 py-2 text-center">{p.fromlocation}</td>
+                  <td className="px-3 py-2 text-center">{p.tolocation}</td>
+                  <td className="px-3 py-2 text-center">
+                    <span
+                      className={`px-2 py-1 rounded text-xs font-semibold ${
+                        p.status === "Active"
+                          ? "bg-green-100 text-green-700"
+                          : p.status === "In Progress"
+                          ? "bg-yellow-100 text-yellow-700"
+                          : "bg-gray-100 text-gray-700"
+                      }`}
+                    >
+                      {p.status}
+                    </span>
+                  </td>
+                  <td className="px-3 py-2 text-center">
+                    <div className="flex justify-center gap-3">
+                      <FiEdit2
+                        className="cursor-pointer text-blue-600"
+                        onClick={() => navigate(`/editproject/${p.id}`)}
+                      />
+                      <FiTrash2
+                        className="cursor-pointer text-red-500"
+                        onClick={() => {
+                          setDeleteId(p.id);
+                          setShowConfirm(true);
+                        }}
+                      />
+                    </div>
+                  </td>
+                </tr>
+              ))}
+              {current.length === 0 && (
+                <tr>
+                  <td colSpan="8" className="text-center text-gray-500 py-4">
+                    No projects found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        // Card View
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {current.map((project) => (
+            <div
+              key={project.id}
+              className="bg-white p-4 rounded shadow border hover:shadow-md transition"
+            >
+              <div
+                onClick={() => navigate(`/projects/${project.id}`)}
+                className="cursor-pointer"
+              >
+                <h3 className="text-base font-semibold text-blue-700 mb-1">{project.name}</h3>
+                <div className="text-sm text-gray-700 space-y-0.5">
+                  <p><strong>Client:</strong> {project.clientname}</p>
+                  <p><strong>Type:</strong> {project.typeofline}</p>
+                  <p><strong>Towers:</strong> {project.towers}</p>
+                  <p><strong>Route:</strong> {project.fromlocation} → {project.tolocation}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Pagination */}
       {totalPages > 1 && (
@@ -192,9 +242,7 @@ const Projects = () => {
           >
             Prev
           </button>
-          <span className="text-gray-700">
-            Page {currentPage} of {totalPages}
-          </span>
+          <span className="text-gray-700">Page {currentPage} of {totalPages}</span>
           <button
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage((prev) => prev + 1)}
@@ -209,7 +257,7 @@ const Projects = () => {
         </div>
       )}
 
-      {/* Confirm Delete Modal */}
+      {/* Delete Modal */}
       {showConfirm && (
         <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">

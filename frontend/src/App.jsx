@@ -1,67 +1,103 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './pages/Login/login'; // Capitalized
-import SidebarWithDrawer from './pages/Sidebar/Sidebar';
+import './index.css';
 
+
+// Auth & Dashboard Pages
+import Login from './pages/Login/login';
+import SetPassword from './pages/SetPassword/SetPassword';
 import AdminDashboard from './pages/Dashboard/AdminDashboard';
 import ClientDashboard from './pages/Dashboard/ClientDashboard';
-import EmployeeDashboard from './pages/Dashboard/EmployeeDashboard';  
-import SetPassword from './pages/SetPassword/SetPassword';
-import AddClient from './pages/AddClient/AddClient';  
+import EmployeeDashboard from './pages/Dashboard/EmployeeDashboard';
 
+// Sidebar
+import SidebarWithDrawer from './pages/Sidebar/Sidebar';
+
+// Core Pages
 import Projects from './pages/Projects/Projects';
-import Settings from './pages/Settings/Settings'; 
+import Settings from './pages/Settings/Settings';
 import Users from './pages/Users/Users';
+import AddClient from './pages/AddClient/AddClient';
+  
+// Project Details
 import ProjectDashboard from './pages/Projects/ProjectDashboard';
-import ManpowerManagement from './pages/Projects/ProjectModules/ManpowerManagement/ManpowerManagement_name';
-import Manpower from './pages/Projects/ProjectModules/ManpowerManagement/Manpower';
-import AddNewManpower from "./pages/Projects/ProjectModules/ManpowerManagement/Addnewmanpower";
-import Contractor from './pages/Projects/ProjectModules/ManpowerManagement/Contractor';
-import CableSchedule from './pages/Projects/ProjectModules/CableSchedule/CableSchedule';
-import MaterialList from './pages/Projects/ProjectModules/MaterialList/MaterialList';
-import Addmaterial from "./pages/Projects/ProjectModules/MaterialList/Addmaterial";
-import ACDBCableSchedule from "./pages/Projects/ProjectModules/CableSchedule/ACDBCableSchedule";
-import DCSideCableSchedule from "./pages/Projects/ProjectModules/CableSchedule/DCSideCableSchedule";
 import AddProject from './pages/Projects/AddProject';
+import Smallview from './pages/Projects/ViewDropdown/Smallview';
+import Listview from './pages/Projects/ViewDropdown/Listview';
+
+// Modules - Manpower
 import ManpowerManagementName from './pages/Projects/ProjectModules/ManpowerManagement/ManpowerManagement_name';
+import AddNewManpower from './pages/Projects/ProjectModules/ManpowerManagement/Addnewmanpower';
+import Manpower from './pages/Projects/ProjectModules/ManpowerManagement/Manpower';
+import Contractor from './pages/Projects/ProjectModules/ManpowerManagement/Contractor';
 import Addnewcontractor from './pages/Projects/ProjectModules/ManpowerManagement/Addnewcontractor';
+
+// Modules - Material
+import MaterialList from './pages/Projects/ProjectModules/MaterialList/MaterialList';
+import Addmaterial from './pages/Projects/ProjectModules/MaterialList/Addmaterial';
+
+// Modules - Cable Schedule
+import CableSchedule from './pages/Projects/ProjectModules/CableSchedule/CableSchedule';
+import ACDBCableSchedule from './pages/Projects/ProjectModules/CableSchedule/ACDBCableSchedule';
+import DCSideCableSchedule from './pages/Projects/ProjectModules/CableSchedule/DCSideCableSchedule';
+
+// Modules - Cable Summary
+import Cablesummary from './pages/Projects/ProjectModules/CableSummary/Cablesummary';
+import ACDBSummary from './pages/Projects/ProjectModules/CableSummary/ACDBSummary';
+import DCSideSummary from './pages/Projects/ProjectModules/CableSummary/DCSideSummary';
 
 const Layout = () => {
   const location = useLocation();
-
-  // Show sidebar only when not on /login
   const hideSidebar = location.pathname === '/login';
 
   return (
-     <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
       {!hideSidebar && <SidebarWithDrawer />}
       <div style={{ flex: 1, padding: '1.5rem' }}>
         <Routes>
+          {/* Auth & Redirects */}
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<Login />} />
-          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
           <Route path="/setpassword" element={<SetPassword />} />
-          <Route path="/admindashboard" element={<AdminDashboard />} />
-          <Route path="/clientdashboard" element={<ClientDashboard/>} />
-          <Route path="/employeedashboard" element={<EmployeeDashboard/>} />
-          <Route path="/addclient" element={<AddClient/>} />
 
+          {/* Dashboards */}
+          <Route path="/admindashboard" element={<AdminDashboard />} />
+          <Route path="/clientdashboard" element={<ClientDashboard />} />
+          <Route path="/employeedashboard" element={<EmployeeDashboard />} />
+
+          {/* Pages */}
+          <Route path="/addclient" element={<AddClient />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/users" element={<Users />} />
+
+          {/* Project Details */}
           <Route path="/projects/:id" element={<ProjectDashboard />} />
+          <Route path="/addproject" element={<AddProject />} />
+          <Route path="/smallview" element={<Smallview />} />
+          <Route path="/listview" element={<Listview />} />
+
+          {/* Manpower Module */}
           <Route path="/manpowermanagement_name" element={<ManpowerManagementName />} />
           <Route path="/addnewmanpower/:type" element={<AddNewManpower />} />
           <Route path="/manpower" element={<Manpower />} />
           <Route path="/contractor" element={<Contractor />} />
-          <Route path="/cableschedule" element={<CableSchedule />} />
+          <Route path="/addnewcontractor" element={<Addnewcontractor />} />
+
+          {/* Material Module */}
           <Route path="/projects/:id/materialmanagment" element={<MaterialList />} />
           <Route path="/add-new-bom" element={<Addmaterial />} />
+
+          {/* Cable Schedule */}
+          <Route path="/cableschedule" element={<CableSchedule />} />
           <Route path="/acdbcableschedule" element={<ACDBCableSchedule />} />
           <Route path="/dcsidecableschedule" element={<DCSideCableSchedule />} />
-          <Route path="/addproject" element={<AddProject />} />
-          <Route path="/addnewcontractor" element={<Addnewcontractor />} />
+
+          {/* Cable Summary */}
+          <Route path="/cablesummary" element={<Cablesummary />} />
+          <Route path="/acdbsummary" element={<ACDBSummary />} />
+          <Route path="/dcsidecablesummary" element={<DCSideSummary />} />
         </Routes>
       </div>
     </div>

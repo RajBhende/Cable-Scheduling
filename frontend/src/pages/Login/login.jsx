@@ -21,7 +21,7 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(""); // Reset error before login
+    setError("");
 
     try {
       const res = await fetch("http://localhost:5000/api/auth/login", {
@@ -36,7 +36,6 @@ export default function Login() {
         localStorage.setItem("token", data.token);
         localStorage.setItem("role", data.role);
 
-        // Navigate based on role
         if (data.role === "admin") navigate("/admin-dashboard");
         else if (data.role === "client") navigate("/client-dashboard");
         else navigate("/employee-dashboard");
@@ -50,40 +49,31 @@ export default function Login() {
   };
 
   return (
-    <section className="flex items-center justify-center h-screen bg-gray-50 p-4">
-      <Card className="w-full max-w-md shadow-lg">
+    <section className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+      <Card className="w-full max-w-md shadow-md border border-gray-200">
         <form onSubmit={handleLogin}>
-          <CardBody className="flex flex-col gap-5 p-6">
+          <CardBody className="flex flex-col gap-4 p-6">
             <Typography variant="h4" color="blue-gray" className="text-center">
               Sign In
             </Typography>
-            <Typography
-              variant="small"
-              color="gray"
-              className="text-center font-normal"
-            >
-              Enter your email and password to sign in
+            <Typography variant="small" color="gray" className="text-center">
+              Enter your email and password to access your account
             </Typography>
 
             {error && (
-              <Typography
-                variant="small"
-                color="red"
-                className="text-center font-medium"
-              >
+              <Typography variant="small" color="red" className="text-center">
                 {error}
               </Typography>
             )}
 
             {/* Email Field */}
-            <div>
-              <label htmlFor="email" className="text-sm font-medium text-gray-800">
+            <div className="space-y-1">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email
               </label>
               <Input
                 id="email"
                 type="email"
-                name="email"
                 placeholder="name@mail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -92,16 +82,15 @@ export default function Login() {
               />
             </div>
 
-            {/* Password Field with Eye Icon */}
-            <div>
-              <label htmlFor="password" className="text-sm font-medium text-gray-800">
+            {/* Password Field with Toggle */}
+            <div className="space-y-1">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
               </label>
               <div className="relative">
                 <Input
-                  type={passwordShown ? "text" : "password"}
                   id="password"
-                  name="password"
+                  type={passwordShown ? "text" : "password"}
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -127,22 +116,18 @@ export default function Login() {
                 as="a"
                 href="#"
                 variant="small"
-                className="font-medium text-blue-600 hover:underline"
+                className="text-sm text-blue-600 hover:underline"
               >
                 Forgot password?
               </Typography>
             </div>
           </CardBody>
 
-          <CardFooter className="pt-0 px-6 pb-6 flex flex-col gap-3">
+          <CardFooter className="px-6 pt-0 pb-6">
             <Button type="submit" color="blue" fullWidth>
               Sign In
             </Button>
-
-            <Typography
-              variant="small"
-              className="text-center text-gray-600 mt-2"
-            >
+            <Typography variant="small" className="text-center text-gray-600 mt-3">
               Need access? Contact admin.
             </Typography>
           </CardFooter>
