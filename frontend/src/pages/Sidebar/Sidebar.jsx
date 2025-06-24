@@ -1,12 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import {
-  FaBolt,
-  FaUser,
-  FaProjectDiagram,
-  FaCog,
-  FaTachometerAlt,
-  FaSignOutAlt,
-} from "react-icons/fa";
+import {FaBolt, FaUser, FaProjectDiagram, FaCog, FaTachometerAlt, FaSignOutAlt,} from "react-icons/fa";
 
 const Sidebar = ({ collapsed }) => {
   const location = useLocation();
@@ -30,7 +23,7 @@ const Sidebar = ({ collapsed }) => {
 
   // Sidebar item style
   const baseClasses =
-    "flex items-center gap-3 px-4 py-2 rounded-lg transition hover:bg-gray-700";
+    "flex items-center gap-3 px-4 py-2 rounded-lg transition hover:bg-white-700";
   const iconSize = collapsed ? "text-xl" : "text-lg";
 
   // Menu items
@@ -47,11 +40,11 @@ const Sidebar = ({ collapsed }) => {
 
   return (
     <div
-      className={`min-h-screen bg-gray-800 text-white flex flex-col justify-between shadow-lg ${
+      className={`min-h-screen bg-blue-800 text-white flex flex-col justify-between shadow-lg ${
         collapsed ? "w-20" : "w-64"
       } transition-all duration-300`}
     >
-      {/* Top Section */}
+      {/* Top Section */} 
       <div className="p-6">
         {/* Logo */}
         <div className="flex items-center gap-2 mb-10">

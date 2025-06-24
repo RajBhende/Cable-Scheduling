@@ -141,10 +141,10 @@ const handleDownload = () => {
               <th colSpan="2" className="border px-2 py-1">Wire Nos.</th>
               <th colSpan="2" className="border px-2 py-1">Ferrule Nos.</th>
               <th rowSpan="2" className="border px-2 py-1">APPLICATION</th>
-              <th colSpan="2" className="border px-2 py-1">REF. DRAWING. NO</th>
+               <th rowSpan="2" className="border px-2 py-1">REMARKS</th>
+              <th colSpan="1" className="border px-2 py-1">REF. DRAWING. NO</th>
               <th rowSpan="2" className="border px-2 py-1">STAGE</th>
-              <th rowSpan="2" className="border px-2 py-1">STATUS</th>
-              <th rowSpan="2" className="border px-2 py-1">REMARKS</th>
+              <th rowSpan="2" className="border px-2 py-1">STATUS</th>   
             </tr>
             <tr>
               <th className="border px-2 py-1">FROM</th>
@@ -167,12 +167,12 @@ const handleDownload = () => {
             <tr className="bg-gray-50 font-semibold text-left">
               <td colSpan="22" className="border px-2 py-2">
                 {/* Example Section Name */}
-                {/* BUS A VT INTERPOLE CABLING */}
+                BUS A VT INTERPOLE CABLING
               </td>
             </tr>
 
             {/* Sample Data Row (can be repeated or dynamically generated) */}
-            {/* <tr className="hover:bg-blue-50">
+            <tr className="hover:bg-blue-50">
               <td className="border px-2 py-1">1</td>
               <td className="border px-2 py-1">2</td>
               <td className="border px-2 py-1">204-VT R</td>
@@ -183,6 +183,7 @@ const handleDownload = () => {
               <td className="border px-2 py-1">5</td>
               <td className="border px-2 py-1">1</td>
               <td className="border px-2 py-1">10</td>
+              <td className="border px-2 py-1">1</td>
               <td className="border px-2 py-1">1a</td>
               <td className="border px-2 py-1">RTB-1</td>
               <td className="border px-2 py-1">R</td>
@@ -192,8 +193,34 @@ const handleDownload = () => {
               <td className="border px-2 py-1">Core -1</td>
               <td className="border px-2 py-1">CVT - CVT JB</td>
               <td className="border px-2 py-1">FROM: 1HYT902474</td>
-              <td className="border px-2 py-1 ">TO: Nill</td>
-            </tr> */}
+              <td className="border px-2 py-1 "></td>
+              <td className="border px-2 py-1 "></td>
+            </tr>
+
+            <tr>
+              <td className="border px-2 py-1"></td>
+              <td className="border px-2 py-1"></td>
+              <td className="border px-2 py-1"></td>
+              <td className="border px-2 py-1"></td>
+              <td className="border px-2 py-1"></td>
+              <td className="border px-2 py-1"></td>
+              <td className="border px-2 py-1"></td>
+              <td className="border px-2 py-1"></td>
+              <td className="border px-2 py-1"></td>
+              <td className="border px-2 py-1"></td>
+              <td className="border px-2 py-1">2</td>
+              <td className="border px-2 py-1">1n</td>
+              <td className="border px-2 py-1">RTB-2</td>
+              <td className="border px-2 py-1">R</td>
+              <td className="border px-2 py-1">R</td>
+              <td className="border px-2 py-1">204-VT MB-RTB-2 / 1n</td>
+              <td className="border px-2 py-1">204-VT R-1n / RTB-2</td>
+              <td className="border px-2 py-1"></td>
+              <td className="border px-2 py-1"></td>
+              <td className="border px-2 py-1"> To: Nill</td>
+              <td className="border px-2 py-1 "></td>
+              <td className="border px-2 py-1 "></td>
+            </tr>
           </tbody>
         </table>
       </div>
