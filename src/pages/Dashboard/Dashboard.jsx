@@ -66,11 +66,11 @@ const Dashboard = () => {
               onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"}
               onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}
             >
-              <FaTowerBroadcast size={24} className="mb-2 text-dark" />
+              <FaTowerBroadcast size={28} className="mb-2 text-dark" />
               <h5 className="fw-bold fs-6 mb-2">{project.name}</h5>
-              <p className="mb-1"><strong>Type of Line:</strong> {project.typeofline}</p>
-              <p className="mb-1"><strong>Total Length:</strong> {project.totallengthofcable}</p>
               <p className="mb-1"><strong>Client:</strong> {project.clientname}</p>
+              <p className="mb-1"><strong>Type of Line:</strong> {project.typeofline}</p>
+              <p className="mb-1"><strong>Total Length of Cable:</strong> {project.totallengthofcable}</p>
               <p className="mb-0"><strong>Status:</strong> {project.status}</p>
             </div>
           ))}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import { HiArrowLeft } from "react-icons/hi";
 
 const DCSideCableSchedule = () => {
   const { id } = useParams();
@@ -11,18 +12,22 @@ const DCSideCableSchedule = () => {
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       {/* Back Button */}
-      <div className="mb-4">
-        <button
-          onClick={() => navigate(-1)}
-          className="text-blue-600 hover:underline text-sm font-medium flex items-center"
-        >
-          &larr; Back to Project Dashboard
-        </button>
-      </div>
+      <div className="mb-4 flex items-center space-x-2">
+            <button
+              onClick={() => navigate(-1)}
+              className="text-blue-700 text-lg hover:underline"
+            >
+                  <HiArrowLeft className="w-7 h-5" />
+            </button>
+            
+            <span className="text-lg font-semibold text-gray-800">
+              <h3>Cable Schedule</h3>
+            </span>
+          </div>
 
       {/* Title */}
       <h2 className="text-2xl font-bold text-gray-800 mb-2">
-        Two-core Multipurpose Power Cable - Cable Schedule {id}
+        Two-core Multipurpose Power Cable {id}
       </h2>
 
       {/* Tabs */}

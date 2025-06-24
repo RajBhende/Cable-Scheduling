@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { FiCalendar } from "react-icons/fi";
+import { FiCalendar, FiBarChart2, FiUsers, FiPackage  } from "react-icons/fi";
 
 const dummyProjects = [
   {
@@ -74,30 +74,43 @@ const ProjectDashboard = () => {
       </div>
 
       {/* Navigation Links */}
-      <div className="flex flex-wrap gap-4">
-        <Link
-          to="/cableschedule"
-          className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          <FiCalendar className="text-lg" />
-          <span>Cable Schedule</span>
-        </Link>
+       <div className="flex flex-wrap gap-4 mt-4">
+      {/* Cable Schedule */}
+      <Link
+        to="/cableschedule"
+        className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition"
+      >
+        <FiCalendar className="text-lg" />
+        <span className="text-sm font-medium">Cable Schedule</span>
+      </Link>
 
-        <Link
-                    to="/manpowermanagement_name"
+      {/* Cable Summary */}
+      <Link
+        to="/cablesummary"
+        className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition"
+      >
+        <FiBarChart2 className="text-lg" />
+        <span className="text-sm font-medium">Cable Summary</span>
+      </Link>
 
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Manpower Management
-        </Link>
+      {/* Manpower Management */}
+      <Link
+        to="/manpowermanagement_name"
+        className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition"
+      >
+        <FiUsers className="text-lg" />
+        <span className="text-sm font-medium">Manpower Management</span>
+      </Link>
 
-        <Link
-          to={`/projects/${id}/materialmanagment`}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Material Management
-        </Link>
-      </div>
+      {/* Material Management */}
+      <Link
+        to={`/projects/${id}/materialmanagment`}
+        className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition"
+      >
+        <FiPackage className="text-lg" />
+        <span className="text-sm font-medium">Material Management</span>
+      </Link>
+    </div>
 
       {/* Back Link */}
       <div className="mt-6">

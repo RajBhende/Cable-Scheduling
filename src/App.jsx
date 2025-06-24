@@ -22,6 +22,9 @@ import ManpowerManagementName from './pages/Projects/ProjectModules/ManpowerMana
 import Addnewcontractor from './pages/Projects/ProjectModules/ManpowerManagement/Addnewcontractor';
 import Smallview from './pages/Projects/ViewDropdown/Smallview';
 import Listview from './pages/Projects/ViewDropdown/Listview';
+import Cablesummary from './pages/Projects/ProjectModules/CableSummary/Cablesummary';
+import ACDBSummary from './pages/Projects/ProjectModules/CableSummary/ACDBSummary';
+import DCSideSummary from './pages/Projects/ProjectModules/CableSummary/DCSideSummary';
 
 const App = () => {
   return (
@@ -36,8 +39,8 @@ const App = () => {
             <Route path="/users" element={<Users />} />
             <Route path="/projects/:id" element={<ProjectDashboard />} />
             <Route path="/manpowermanagement_name" element={<ManpowerManagementName />} />
-<Route path="/addnewmanpower/:type" element={<AddNewManpower />} />
-              <Route path="/manpower" element={<Manpower />} />
+            <Route path="/addnewmanpower/:type" element={<AddNewManpower />} />
+            <Route path="/manpower" element={<Manpower />} />
             <Route path="/contractor" element={<Contractor />} />
             <Route path="/cableschedule" element={<CableSchedule />} />
             <Route path="/projects/:id/materialmanagment" element={<MaterialList />} />
@@ -48,7 +51,9 @@ const App = () => {
             <Route path="/addnewcontractor" element={<Addnewcontractor />} />
             <Route path="/smallview" element={<Smallview />} />
             <Route path="/listview" element={<Listview/>} />
-
+            <Route path="/cablesummary" element={<Cablesummary/>} />
+            <Route path="/acdbsummary" element={<ACDBSummary/>} />
+            <Route path="/dcsidecablesummary" element={<DCSideSummary/>} />
           </Routes>
         </div>
       </div>
