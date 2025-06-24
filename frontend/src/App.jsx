@@ -8,7 +8,7 @@ import AdminDashboard from './pages/Dashboard/AdminDashboard';
 import ClientDashboard from './pages/Dashboard/ClientDashboard';
 import EmployeeDashboard from './pages/Dashboard/EmployeeDashboard';  
 import SetPassword from './pages/SetPassword/SetPassword';
-import AddClient from './pages/AddClient/AddClient';
+import AddClient from './pages/AddClient/AddClient';  
 
 import Projects from './pages/Projects/Projects';
 import Settings from './pages/Settings/Settings'; 
