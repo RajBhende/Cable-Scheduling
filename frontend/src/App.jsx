@@ -47,6 +47,18 @@ import Cablesummary from './pages/Projects/ProjectModules/CableSummary/Cablesumm
 import ACDBSummary from './pages/Projects/ProjectModules/CableSummary/ACDBSummary';
 import DCSideSummary from './pages/Projects/ProjectModules/CableSummary/DCSideSummary';
 
+import EquipmentDashboard from './pages/Projects/ProjectModules/EquipmentManagement/Equipmentdashboard';
+import Addequipment from './pages/Projects/ProjectModules/EquipmentManagement/Addequipment';
+
+
+import Statutoryclearancelist from './pages/Projects/ProjectModules/StatutoryClearance/Statutoryclearancelist';
+import EditStatutory from './pages/Projects/ProjectModules/StatutoryClearance/EditStatutory';
+
+
+// import Inspectiondashboard from './pages/Projects/ProjectModules/SafetyInspection/Inspectiondashboard';
+import Addinspection from './pages/Projects/ProjectModules/SafetyInspection/Addinspection';
+import Safetydashboard from './pages/Projects/ProjectModules/SafetyInspection/Safetydashboard';
+
 const Layout = () => {
   const location = useLocation();
   const hideSidebar = location.pathname === '/login';
@@ -98,6 +110,18 @@ const Layout = () => {
           <Route path="/cablesummary" element={<Cablesummary />} />
           <Route path="/acdbsummary" element={<ACDBSummary />} />
           <Route path="/dcsidecablesummary" element={<DCSideSummary />} />
+
+
+          <Route path="/equipmentdashboard" element={<EquipmentDashboard />} />
+          <Route path="/addequipment" element={<Addequipment />} />
+
+
+          <Route path="/statutoryclearancelist" element={<Statutoryclearancelist/> } />
+          <Route path="/editstatutory" element={<EditStatutory />} />
+
+
+          <Route path="/safetydashboard" element={<Safetydashboard/>} />
+          <Route path="/addinspection" element={<Addinspection />} />
         </Routes>
       </div>
     </div>

@@ -110,6 +110,36 @@ const ProjectDashboard = () => {
         <FiPackage className="text-lg" />
         <span className="text-sm font-medium">Material Management</span>
       </Link>
+
+       {/* Equipment Management */}
+      <Link
+        to="/equipmentdashboard"
+        className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition"
+      >
+        <FiPackage className="text-lg" />
+        <span className="text-sm font-medium">Equipment Management </span>
+      </Link>
+
+      {/* Safety Inspection */}
+    <Link
+        to="/safetydashboard"
+        className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition"
+      >
+        <FiPackage className="text-lg" />
+        <span className="text-sm font-medium">Safety Inspection</span>
+      </Link>
+
+          {/* Statutory Clearance */}
+    <Link
+        to="/statutoryclearancelist"
+        className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition"
+      >
+        <FiPackage className="text-lg" />
+        <span className="text-sm font-medium">Statutory Clearance </span>
+      </Link>
+
+
+
     </div>
 
       {/* Back Link */}
