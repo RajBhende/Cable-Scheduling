@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi";
 import { FiPlus } from "react-icons/fi";
 
-const SafetyDashboard = () => {
+const Safetydashboard = () => {
   const navigate = useNavigate();
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
+
+      
       {/* Header with Back Button */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -28,6 +30,8 @@ const SafetyDashboard = () => {
           <FiPlus /> Add New Inspection
         </button>
       </div>
+
+
 
       {/* Card Section */}
       <div className="bg-white rounded border p-6 shadow-sm">
@@ -57,4 +61,4 @@ const SafetyDashboard = () => {
   );
 };
 
-export default SafetyDashboard;
+export default Safetydashboard;

@@ -3,7 +3,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
-
 // Auth & Dashboard Pages
 import Login from './pages/Login/login';
 import SetPassword from './pages/SetPassword/SetPassword';
@@ -47,15 +46,17 @@ import Cablesummary from './pages/Projects/ProjectModules/CableSummary/Cablesumm
 import ACDBSummary from './pages/Projects/ProjectModules/CableSummary/ACDBSummary';
 import DCSideSummary from './pages/Projects/ProjectModules/CableSummary/DCSideSummary';
 
+
+// Modules - Equipment Management
 import EquipmentDashboard from './pages/Projects/ProjectModules/EquipmentManagement/Equipmentdashboard';
 import Addequipment from './pages/Projects/ProjectModules/EquipmentManagement/Addequipment';
 
 
 import Statutoryclearancelist from './pages/Projects/ProjectModules/StatutoryClearance/Statutoryclearancelist';
-import EditStatutory from './pages/Projects/ProjectModules/StatutoryClearance/EditStatutory';
+// import EditStatutory from './pages/Projects/ProjectModules/StatutoryClearance/EditStatutory';
 
 
-// import Inspectiondashboard from './pages/Projects/ProjectModules/SafetyInspection/Inspectiondashboard';
+
 import Addinspection from './pages/Projects/ProjectModules/SafetyInspection/Addinspection';
 import Safetydashboard from './pages/Projects/ProjectModules/SafetyInspection/Safetydashboard';
 
@@ -98,7 +99,7 @@ const Layout = () => {
           <Route path="/addnewcontractor" element={<Addnewcontractor />} />
 
           {/* Material Module */}
-          <Route path="/projects/:id/materialmanagment" element={<MaterialList />} />
+          <Route path="/materiallist" element={<MaterialList />} />
           <Route path="/add-new-bom" element={<Addmaterial />} />
 
           {/* Cable Schedule */}
@@ -117,7 +118,6 @@ const Layout = () => {
 
 
           <Route path="/statutoryclearancelist" element={<Statutoryclearancelist/> } />
-          <Route path="/editstatutory" element={<EditStatutory />} />
 
 
           <Route path="/safetydashboard" element={<Safetydashboard/>} />

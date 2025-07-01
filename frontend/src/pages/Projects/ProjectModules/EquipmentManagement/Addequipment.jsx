@@ -38,7 +38,7 @@ const Addequipment = () => {
                  >
                    <HiArrowLeft className="w-6 h-6" />
                  </button>
-                 <h3 className="text-xl font-semibold text-gray-800">Add Equipment Details</h3>
+                 <h4 className="text-xl font-semibold text-gray-800">Add Equipment Details</h4>
                </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -57,6 +57,20 @@ const Addequipment = () => {
             />
           </div>
 
+   <div>
+            <label className="block mb-1 font-medium">Equipment Name</label>
+            <input
+              type="text"
+              name="equipmentName"
+              placeholder="Enter Equipment Name"
+              value={formData.equipmentName}
+              onChange={handleChange}
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
+
+
           <div>
             <label className="block mb-1 font-medium">Equipment Type</label>
             <input
@@ -71,7 +85,7 @@ const Addequipment = () => {
           </div>
 
           <div>
-            <label className="block mb-1 font-medium">Total Unit(No's)</label>
+            <label className="block mb-1 font-medium">Available Total Unit(No's)</label>
             <input
               type="number"
               name="totalUnits"
@@ -108,6 +122,18 @@ const Addequipment = () => {
             />
           </div>
 
+            <div>
+            <label className="block mb-1 font-medium">Assigned Location</label>
+            <input
+              type="text"
+              name="assignedlocation"
+              placeholder="Enter Assigned Location"
+              value={formData.assignedlocation}
+              onChange={handleChange}
+              className="w-full p-2 border rounded"
+            />
+          </div>
+
           <div>
             <label className="block mb-1 font-medium">Assigned Numbers</label>
             <input
@@ -130,6 +156,18 @@ const Addequipment = () => {
               className="w-full p-2 border rounded"
             />
           </div>
+
+             <div>
+            <label className="block mb-1 font-medium">Approved Date</label>
+            <input
+              type="date"
+              name="approvedDate"
+              value={formData.approvedDate}
+              onChange={handleChange}
+              className="w-full p-2 border rounded"
+            />
+          </div>
+
 
           <div>
             <label className="block mb-1 font-medium">Returned Date</label>

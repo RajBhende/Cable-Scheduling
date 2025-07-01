@@ -104,7 +104,7 @@ const ProjectDashboard = () => {
 
       {/* Material Management */}
       <Link
-        to={`/projects/${id}/materialmanagment`}
+        to="/materiallist"
         className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition"
       >
         <FiPackage className="text-lg" />
