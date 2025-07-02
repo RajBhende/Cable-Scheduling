@@ -41,16 +41,18 @@ const EquipmentDashboard = () => {
         >
           <HiArrowLeft className="w-6 h-6" />
         </button>
-        <h3 className="text-2xl font-semibold text-gray-800">Equipment Management</h3>
+        <h4 className="text-2xl font-semibold text-gray-800">Equipment Management</h4>
       </div>
 
       {/* Project Title */}
-      <h4 className="text-lg font-semibold mb-4">
+      {/* <h4 className="text-lg font-semibold mb-4">
         Project:{" "}
         <span className="text-gray-700 font-normal">
           Two-core Multipurpose Power Cable Line
         </span>
-      </h4>
+      </h4> */}
+
+      <h4 className="text-xl font-semibold mb-4">Equipment List</h4>
 
       {/* Controls */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
@@ -83,10 +85,10 @@ const EquipmentDashboard = () => {
               {[
                 "Sl.No.",
                 "Equipment Code",
-                "Name",
-                "Type",
-                "Total Units",
-                "Contractor",
+                "Equipment Name",
+                "Equipment Type",
+                "Available Total Units(no's)",
+                "Contractor Name",
                 "Location",
                 "Assigned Location",
                 "Assigned No.",

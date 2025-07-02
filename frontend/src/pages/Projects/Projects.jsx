@@ -84,7 +84,7 @@ const Projects = () => {
 
         <div className="flex flex-wrap gap-2">
           {/* View Toggle */}
-          <div className="flex border rounded bg-white">
+          {/* <div className="flex border rounded bg-white">
             <button
               onClick={() => setView("table")}
               className={`px-3 py-1 flex items-center gap-1 ${view === "table" ? "bg-blue-600 text-white" : ""}`}
@@ -97,7 +97,7 @@ const Projects = () => {
             >
               <FiGrid /> Card
             </button>
-          </div>
+          </div> */}
 
           {/* Search */}
           <input
@@ -116,21 +116,19 @@ const Projects = () => {
             onChange={(e) => setSortField(e.target.value)}
             className="border border-gray-300 rounded px-2 py-1"
           >
-            <option value="">Sort by</option>
-            <option value="name">Project Name</option>
-            <option value="clientname">Client</option>
-            <option value="typeofline">Type</option>
+            <option value="">View</option>
+          
           </select>
 
           {/* Actions */}
           <button onClick={exportCSV} className="bg-green-600 text-white px-3 py-1 rounded">
-            Export CSV
+            .CSV
           </button>
           <Link
             to="/AddProject"
             className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700"
           >
-            + Add Project
+            + Add New Project
           </Link>
         </div>
       </div>
