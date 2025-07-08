@@ -51,14 +51,20 @@ import DCSideSummary from './pages/Projects/ProjectModules/CableSummary/DCSideSu
 import EquipmentDashboard from './pages/Projects/ProjectModules/EquipmentManagement/Equipmentdashboard';
 import Addequipment from './pages/Projects/ProjectModules/EquipmentManagement/Addequipment';
 
-
+//Modules - Statutory CLearance
 import Statutoryclearancelist from './pages/Projects/ProjectModules/StatutoryClearance/Statutoryclearancelist';
 // import EditStatutory from './pages/Projects/ProjectModules/StatutoryClearance/EditStatutory';
 
 
-
+//Modules - Safety Inspection
 import Addinspection from './pages/Projects/ProjectModules/SafetyInspection/Addinspection';
 import Safetydashboard from './pages/Projects/ProjectModules/SafetyInspection/Safetydashboard';
+
+
+//Modules - Bill of Materials
+import BOMdashboard from './pages/Projects/ProjectModules/BillofMaterials/BOMdashboard';
+
+
 
 const Layout = () => {
   const location = useLocation();
@@ -112,16 +118,20 @@ const Layout = () => {
           <Route path="/acdbsummary" element={<ACDBSummary />} />
           <Route path="/dcsidecablesummary" element={<DCSideSummary />} />
 
-
+          {/* Equipment Management */}
           <Route path="/equipmentdashboard" element={<EquipmentDashboard />} />
           <Route path="/addequipment" element={<Addequipment />} />
 
-
+          {/* Statutory CLearance */}
           <Route path="/statutoryclearancelist" element={<Statutoryclearancelist/> } />
 
-
+          {/* Safety Inspection */}
           <Route path="/safetydashboard" element={<Safetydashboard/>} />
           <Route path="/addinspection" element={<Addinspection />} />
+
+          {/* Bill of Materials */}
+          <Route path="/bomdashboard" element={<BOMdashboard/>} />
+
         </Routes>
       </div>
     </div>
